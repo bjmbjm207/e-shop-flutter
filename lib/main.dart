@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Counters/BookQuantity.dart';
+import 'package:e_shop/Counters/ItemQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,13 +25,21 @@ Future<void> main() async
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-            title: 'e-Shop',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primaryColor: Colors.green,
-            ),
-            home: SplashScreen()
+    return MultiProvider
+      (providers: [
+      ChangeNotifierProvider(create: (c)=>CartItemCounter()),
+      ChangeNotifierProvider(create: (c)=>ItemQuantity()),
+      ChangeNotifierProvider(create: (c)=>AddressChanger()),
+      ChangeNotifierProvider(create: (c)=>TotalAmount()),
+    ],
+      child: MaterialApp(
+          title: 'UET e-Shop',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: Colors.green,
+          ),
+          home: SplashScreen()
+      ),
     );
   }
 }
@@ -51,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
   displaySplash(){
     Timer(Duration(seconds: 5),()async{
-      if(await EcommerceApp.auth.currentUser()== null){
+      if(await EcommerceApp.auth.currentUser()!= null){
         Route route = MaterialPageRoute(builder: (_)=> StoreHome());
         Navigator.pushReplacement(context, route);
       }
@@ -82,8 +90,9 @@ class _SplashScreenState extends State<SplashScreen>
               Image.asset("images/welcome.png"),
               SizedBox(height: 20.0),
               Text(
-                "World's Shop",
+                "UET e-Shop",
                 style: TextStyle(
+                  fontSize: 25.0,
                   color: Colors.white
                 ),
               )

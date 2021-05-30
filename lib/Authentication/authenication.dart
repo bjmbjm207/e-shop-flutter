@@ -30,7 +30,7 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
             ),
           ),
           title: Text(
-            "e-shop",
+            "UET e-Shop",
             style: TextStyle(
               fontSize: 55.0,
               color: Colors.white,

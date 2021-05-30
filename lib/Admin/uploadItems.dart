@@ -254,7 +254,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
                 ),
                 controller: _descriptionTextEditingController,
                 decoration: InputDecoration(
-                    hintText: "Description",
+                    hintText: "Phone + Address",
                     hintStyle: TextStyle(
                         color: Colors.deepPurpleAccent
                     ),
@@ -319,7 +319,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
     itemsRef.document(productId).setData({
       "shortInfo":_shortInfoTextEditingController.text.trim(),
       "longDescription": _descriptionTextEditingController.text.trim(),
-      "price" : _priceTextEditingController.text.trim(),
+      "price" : int.parse(_priceTextEditingController.text),
       "publishedDate":DateTime.now(),
       "status" :"available",
       "thumbnailUrl" :imageUrl,

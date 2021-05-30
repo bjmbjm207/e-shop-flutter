@@ -26,7 +26,7 @@ class AdminLoginPage extends StatelessWidget {
             ),
           ),
           title: Text(
-            "e-shop",
+            "UET e-Shop",
             style: TextStyle(
               fontSize: 55.0,
               color: Colors.white,
@@ -76,7 +76,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
               alignment: Alignment.bottomCenter,
               child: Image.asset(
                 "images/admin.png",
-                height: 240.0,
+                height: 170.0,
                 width: 240.0,
 
               ),
@@ -84,8 +84,8 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "Admin",
-                style: TextStyle(color: Colors.white),
+                "Login page for seller",
+                style: TextStyle(color: Colors.white,fontSize: 20.0),
               ),
             ),
             Form(
@@ -101,7 +101,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   ),
                   CustomTextField(
                     controller: _passwordTextEditingController,
-                    data: Icons.person,
+                    data: Icons.vpn_key,
                     hintText: "Password",
                     isObsecure: true,
                   ),
@@ -145,25 +145,39 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                       builder: (context) => AuthenticScreen()
                   )),
               icon: Icon(Icons.nature_people, color: Colors.pink,),
-              label: Text("I'm not Admin", style: TextStyle(
+              label: Text("I'm not Seller", style: TextStyle(
                   color: Colors.pink, fontWeight: FontWeight.bold),),
-            )
+            ),
+            FlatButton.icon(
+              onPressed: () =>
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => AdminLoginPage()
+                  )),
+              icon: Icon(Icons.new_releases, color: Colors.pink,),
+              label: Text("Sign up to become a seller", style: TextStyle(
+                  color: Colors.pink, fontWeight: FontWeight.bold),),
+            ),
+            Container(
+              height: 300.0,
+              width: _screenWidth * 0.8,
+
+            ),
           ],
         ),
       ),
     );
   }
   loginAdmin(){
-    Firestore.instance.collection("FakerDP").getDocuments().then((snapShot){
+    Firestore.instance.collection("admin").getDocuments().then((snapShot){
       snapShot.documents.forEach((element) {
         if(element.data["id"] != _adminIDTextEditingController.text.trim()){
-          Scaffold.of(context).showSnackBar(SnackBar(content: Text("your id is correct."),));
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Your id is not correct."),));
         }
         else if(element.data["password"] != _passwordTextEditingController.text.trim()){
-          Scaffold.of(context).showSnackBar(SnackBar(content: Text("your password is correct."),));
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Your password is not correct."),));
         }
         else {
-          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Welcome Dear Admin,"+element.data["name"]),));
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Welcome Dear Seller,"+element.data["name"]),));
           setState(() {
             _adminIDTextEditingController.text = "";
             _passwordTextEditingController.text = "";

@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
               alignment: Alignment.bottomCenter,
               child: Image.asset(
                 "images/login.png",
-                height: 240.0,
+                height: 170.0,
                 width: 240.0,
 
               ),
@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.all(8.0),
               child: Text(
                 "Login to your account",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
             Form(
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                   ),
                   CustomTextField(
                     controller: _passwordTextEditingController,
-                    data: Icons.person,
+                    data: Icons.vpn_key,
                     hintText: "Password",
                     isObsecure: true,
                   ),
@@ -112,9 +112,9 @@ class _LoginState extends State<Login> {
                       builder: (context) => AdminLoginPage()
                   )),
               icon: Icon(Icons.nature_people, color: Colors.pink,),
-              label: Text("Admin", style: TextStyle(
+              label: Text("Login Page for Seller", style: TextStyle(
                   color: Colors.pink, fontWeight: FontWeight.bold),),
-            )
+            ),
           ],
         ),
       ),

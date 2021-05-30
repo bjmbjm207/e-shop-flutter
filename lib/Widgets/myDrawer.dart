@@ -71,7 +71,7 @@ class MyDrawer extends StatelessWidget {
                 ),
                 Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
                 ListTile(
-                  leading: Icon(Icons.list,color: Colors.white,),
+                  leading: Icon(Icons.reorder,color: Colors.white,),
                   title: Text("My Orders",style: TextStyle(color: Colors.white),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) => MyOrders());
@@ -116,14 +116,18 @@ class MyDrawer extends StatelessWidget {
                     });
                   },
                 ),
-                Divider(height: 10.0,color: Colors.white,thickness: 6.0,)
+                Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
+                Divider(height: 750.0,color: Colors.white,),
+
               ],
             ),
-          )
+
+          ),
 
         ],
 
       ),
+
     );
   }
 }

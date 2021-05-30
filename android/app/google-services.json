@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "471980489883",
-    "project_id": "e-shop-2a377",
-    "storage_bucket": "e-shop-2a377.appspot.com"
+    "project_number": "275148134270",
+    "project_id": "e-shoop",
+    "storage_bucket": "e-shoop.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:471980489883:android:d9779516076d863e925a3e",
+        "mobilesdk_app_id": "1:275148134270:android:722f959cb4351ecfe0c52f",
         "android_client_info": {
           "package_name": "com.muhammadali.eshop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "471980489883-9j1dr65rri7s5c6d3olbdgkp7kov058s.apps.googleusercontent.com",
+          "client_id": "275148134270-6511jr7qt2lqfguo970ti13mtg6ddk23.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB0CNpGgcG9dIO9_ANn6wt-t6CD4ND-7Dw"
+          "current_key": "AIzaSyDrW6ncwtet_5vkM8PfgB0_ZvsywQNuHtw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "471980489883-9j1dr65rri7s5c6d3olbdgkp7kov058s.apps.googleusercontent.com",
+              "client_id": "275148134270-6511jr7qt2lqfguo970ti13mtg6ddk23.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
