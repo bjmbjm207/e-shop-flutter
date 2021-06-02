@@ -30,6 +30,8 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        main.kotlin.srcDirs = ['src/main/kotlin']
+        //main.java.srcDirs += 'src/main/kotlin'
     }
 
     lintOptions {
@@ -41,9 +43,16 @@ android {
         applicationId "com.muhammadali.eshop"
         minSdkVersion 16
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            // TODO: Nhớ sửa lại cái này
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            abiFilters "x86"
+        }
     }
 
     buildTypes {
@@ -61,6 +70,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

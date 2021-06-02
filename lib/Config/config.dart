@@ -5,12 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class EcommerceApp
 {
-   static const String appName = 'e-Shop';
+   static const String appName = 'UET e-Shop';
 
    static SharedPreferences sharedPreferences;
-   static FirebaseUser user;
+   static User user;
    static FirebaseAuth auth;
-   static Firestore firestore ;
+   static FirebaseFirestore firestore ;
 
    static String collectionUser = "users";
    static String collectionOrders = "orders";

@@ -128,7 +128,7 @@ class _LoginState extends State<Login> {
       return LoadingAlertDialog(message: "Authenticating, Please wait....",);
     });
 
-    FirebaseUser firebaseUser;
+    User firebaseUser;
     await _auth.signInWithEmailAndPassword(
         email: _emailTextEditingController.text.trim(),
         password: _passwordTextEditingController.text.trim()
@@ -148,17 +148,17 @@ class _LoginState extends State<Login> {
       });
     }
   }
-  Future readData(FirebaseUser firebaseUser) async {
-    Firestore.instance.collection("users").document(firebaseUser.uid).get().then((dataSnapshot) async{
+  Future readData(User firebaseUser) async {
+    FirebaseFirestore.instance.collection("users").doc(firebaseUser.uid).get().then((dataSnapshot) async{
       await EcommerceApp.sharedPreferences.setString(
-          EcommerceApp.userUID, dataSnapshot.data[EcommerceApp.userUID]);
+          EcommerceApp.userUID, dataSnapshot.data()[EcommerceApp.userUID]);
       await EcommerceApp.sharedPreferences.setString(
-          EcommerceApp.userEmail, dataSnapshot.data[EcommerceApp.userEmail]);
+          EcommerceApp.userEmail, dataSnapshot.data()[EcommerceApp.userEmail]);
       await EcommerceApp.sharedPreferences.setString(
-          EcommerceApp.userName, dataSnapshot.data[EcommerceApp.userName]);
+          EcommerceApp.userName, dataSnapshot.data()[EcommerceApp.userName]);
       await EcommerceApp.sharedPreferences.setString(
-          EcommerceApp.userAvatarUrl, dataSnapshot.data[EcommerceApp.userAvatarUrl]);
-      List<String> cartList = dataSnapshot.data[EcommerceApp.userCartList].cast<String>();
+          EcommerceApp.userAvatarUrl, dataSnapshot.data()[EcommerceApp.userAvatarUrl]);
+      List<String> cartList = dataSnapshot.data()[EcommerceApp.userCartList].cast<String>();
       await EcommerceApp.sharedPreferences.setStringList(
           EcommerceApp.userCartList, cartList);
 

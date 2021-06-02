@@ -4,7 +4,7 @@ import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/main.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -307,16 +307,16 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
     saveItemInfo(imageUrl);
   }
   Future<String> uploadItemImage(mFileImage) async{
-    final StorageReference storageReference = FirebaseStorage.instance.ref().child("Items");
-    StorageUploadTask uploadTask = storageReference.child("product_$productId.jpg").putFile(mFileImage);
-    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    final firebase_storage.Reference storageReference = firebase_storage.FirebaseStorage.instance.ref().child("items");
+    firebase_storage.UploadTask uploadTask = storageReference.child("product_$productId.jpg").putFile(mFileImage);
+    firebase_storage.TaskSnapshot taskSnapshot = await uploadTask.snapshot;
     String downloadUrl = await taskSnapshot.ref.getDownloadURL();
     return downloadUrl;
   }
 
   saveItemInfo(String imageUrl){
-    final itemsRef = Firestore.instance.collection("items");
-    itemsRef.document(productId).setData({
+    final itemsRef = FirebaseFirestore.instance.collection("items");
+    itemsRef.doc(productId).set({
       "shortInfo":_shortInfoTextEditingController.text.trim(),
       "longDescription": _descriptionTextEditingController.text.trim(),
       "price" : int.parse(_priceTextEditingController.text),

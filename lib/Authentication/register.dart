@@ -4,7 +4,7 @@ import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Store/storehome.dart';
@@ -160,10 +160,10 @@ class _RegisterState extends State<Register> {
         .microsecondsSinceEpoch
         .toString();
 
-    StorageReference storageReference = FirebaseStorage.instance.ref().child(
+    firebase_storage.Reference storageReference = firebase_storage.FirebaseStorage.instance.ref().child(
         imageFileName);
-    StorageUploadTask storageUploadTask = storageReference.putFile(_imageFile);
-    StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
+    firebase_storage.UploadTask storageUploadTask = storageReference.putFile(_imageFile);
+    firebase_storage.TaskSnapshot taskSnapshot = await storageUploadTask.snapshot;
 
     await taskSnapshot.ref.getDownloadURL().then((urlImage) {
       userImageUrl = urlImage;
@@ -174,7 +174,7 @@ class _RegisterState extends State<Register> {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _registerUser() async {
-    FirebaseUser firebaseUser;
+    User firebaseUser;
     await _auth.createUserWithEmailAndPassword(
         email: _emailTextEditingController.text.trim(),
         password: _passwordTextEditingController.text.trim()
@@ -195,8 +195,8 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  Future saveUserInfoFireStore(FirebaseUser firebaseUser) async {
-    Firestore.instance.collection("users").document(firebaseUser.uid).setData({
+  Future saveUserInfoFireStore(User firebaseUser) async {
+    FirebaseFirestore.instance.collection("users").doc(firebaseUser.uid).set({
       "uid": firebaseUser.uid,
       "email": firebaseUser.email,
       "name": _nameTextEditingController.text.trim(),

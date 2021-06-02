@@ -96,7 +96,7 @@ class _StoreHomeState extends State<StoreHome> {
           slivers: [
             SliverPersistentHeader(pinned: true,delegate: SearchBoxDelegate()),
             StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance.collection("items").limit(15).orderBy("publishedDate",descending: true).snapshots(),
+              stream: FirebaseFirestore.instance.collection("items").limit(15).orderBy("publishedDate",descending: true).snapshots(),
               builder: (context, dataSnapshot)
               {
                 return !dataSnapshot.hasData
@@ -106,10 +106,10 @@ class _StoreHomeState extends State<StoreHome> {
                     staggeredTileBuilder: (c) => StaggeredTile.fit(1),
                     itemBuilder: (context,index)
                     {
-                      ItemModel model= ItemModel.fromJson(dataSnapshot.data.documents[index].data);
+                      ItemModel model= ItemModel.fromJson(dataSnapshot.data.docs[index].data());
                       return sourceInfo(model, context);
                     },
-                  itemCount: dataSnapshot.data.documents.length,
+                  itemCount: dataSnapshot.data.docs.length,
 
                 );
               },
@@ -295,8 +295,8 @@ addItemToCart(String shortInfoAsID, BuildContext context)
   tempCartList.add(shortInfoAsID);
 
   EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
-  .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-  .updateData({
+  .doc(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+  .update({
     EcommerceApp.userCartList: tempCartList,
   }).then((v){
     Fluttertoast.showToast(msg: "Item Added to Cart, Successfully.");

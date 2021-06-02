@@ -11,14 +11,17 @@ import 'Counters/cartitemcounter.dart';
 import 'Counters/changeAddresss.dart';
 import 'Counters/totalMoney.dart';
 import 'Store/storehome.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp();
+
   EcommerceApp.auth = FirebaseAuth.instance;
   EcommerceApp.sharedPreferences = await SharedPreferences.getInstance();
-  EcommerceApp.firestore = Firestore.instance;
+  EcommerceApp.firestore = FirebaseFirestore.instance;
   runApp(MyApp());
 }
 
@@ -59,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
   displaySplash(){
     Timer(Duration(seconds: 5),()async{
-      if(await EcommerceApp.auth.currentUser()!= null){
+      if(await EcommerceApp.auth.currentUser != null){
         Route route = MaterialPageRoute(builder: (_)=> StoreHome());
         Navigator.pushReplacement(context, route);
       }

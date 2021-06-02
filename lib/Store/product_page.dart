@@ -64,6 +64,19 @@ class _ProductPageState extends State<ProductPage> {
                             widget.itemModel.longDescription,
 
                           ),
+                          FlatButton (
+                            child: Row(
+                              children: [
+                                Icon(Icons.location_pin),
+                                Text("See on map")
+                              ],
+                            ),
+                            onPressed: () {
+
+                            },
+                            color: Colors.white,
+                            textColor: Colors.blue,
+                          ),
                           SizedBox(
                             height: 10.0,
                           ),
