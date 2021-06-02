@@ -46,8 +46,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-#  wemapgl:
-#    path: ../
+  wemapgl:
+    path: ./WeMap-Flutter-SDK-master
 
 
 flutter:

@@ -3,6 +3,8 @@ import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:e_shop/Store/storehome.dart';
+import 'package:e_shop/route.dart';
+
 
 
 class ProductPage extends StatefulWidget {
@@ -72,7 +74,10 @@ class _ProductPageState extends State<ProductPage> {
                               ],
                             ),
                             onPressed: () {
-
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => RoutePage()),
+                              );
                             },
                             color: Colors.white,
                             textColor: Colors.blue,

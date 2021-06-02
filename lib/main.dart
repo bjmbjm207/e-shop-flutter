@@ -12,9 +12,18 @@ import 'Counters/changeAddresss.dart';
 import 'Counters/totalMoney.dart';
 import 'Store/storehome.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:wemapgl/wemapgl.dart' as WEMAP;
+import 'ePage.dart';
+import 'route.dart';
+
+
+final List<EPage> _allPages = <EPage>[
+  RoutePage(),
+];
 
 Future<void> main() async
 {
+  WEMAP.Configuration.setWeMapKey('GqfwrZUEfxbwbnQUhtBMFivEysYIxelQ');
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
