@@ -1,21 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Admin/adminOrderCard.dart';
-import 'package:e_shop/Config/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../Widgets/loadingWidget.dart';
-import '../Widgets/orderCard.dart';
+import 'package:e_shop/Widgets/customAppBar.dart';
+
+
+
 
 class AdminShiftOrders extends StatefulWidget {
+  const AdminShiftOrders({Key key}) : super(key: key);
+
   @override
-  _MyOrdersState createState() => _MyOrdersState();
+  _AdminShiftOrdersState createState() => _AdminShiftOrdersState();
 }
 
-
-class _MyOrdersState extends State<AdminShiftOrders> {
+class _AdminShiftOrdersState extends State<AdminShiftOrders> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return MaterialApp(
+      home: Scaffold(
+        appBar: MyAppBar()
+      )
     );
   }
 }
+
+

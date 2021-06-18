@@ -163,7 +163,7 @@ class _RegisterState extends State<Register> {
     firebase_storage.Reference storageReference = firebase_storage.FirebaseStorage.instance.ref().child(
         imageFileName);
     firebase_storage.UploadTask storageUploadTask = storageReference.putFile(_imageFile);
-    firebase_storage.TaskSnapshot taskSnapshot = await storageUploadTask.snapshot;
+    firebase_storage.TaskSnapshot taskSnapshot = await storageUploadTask;
 
     await taskSnapshot.ref.getDownloadURL().then((urlImage) {
       userImageUrl = urlImage;

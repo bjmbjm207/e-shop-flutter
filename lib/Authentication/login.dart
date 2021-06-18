@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Admin/adminLogin.dart';
+import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
@@ -105,15 +105,6 @@ class _LoginState extends State<Login> {
             ),
             SizedBox(
               height: 10.0,
-            ),
-            FlatButton.icon(
-              onPressed: () =>
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => AdminLoginPage()
-                  )),
-              icon: Icon(Icons.nature_people, color: Colors.pink,),
-              label: Text("Login Page for Seller", style: TextStyle(
-                  color: Colors.pink, fontWeight: FontWeight.bold),),
             ),
           ],
         ),

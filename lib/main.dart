@@ -8,23 +8,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Authentication/authenication.dart';
 import 'package:e_shop/Config/config.dart';
 import 'Counters/cartitemcounter.dart';
-import 'Counters/changeAddresss.dart';
-import 'Counters/totalMoney.dart';
 import 'Store/storehome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:wemapgl/wemapgl.dart' as WEMAP;
-import 'ePage.dart';
-import 'route.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 
-final List<EPage> _allPages = <EPage>[
-  RoutePage(),
-];
 
 Future<void> main() async
 {
   WEMAP.Configuration.setWeMapKey('GqfwrZUEfxbwbnQUhtBMFivEysYIxelQ');
   WidgetsFlutterBinding.ensureInitialized();
+  await firebase_core.Firebase.initializeApp();
 
   await Firebase.initializeApp();
 
@@ -35,14 +30,13 @@ Future<void> main() async
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider
       (providers: [
       ChangeNotifierProvider(create: (c)=>CartItemCounter()),
       ChangeNotifierProvider(create: (c)=>ItemQuantity()),
-      ChangeNotifierProvider(create: (c)=>AddressChanger()),
-      ChangeNotifierProvider(create: (c)=>TotalAmount()),
     ],
       child: MaterialApp(
           title: 'UET e-Shop',
@@ -79,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen>
         Route route = MaterialPageRoute(builder: (_)=> AuthenticScreen());
         Navigator.pushReplacement(context, route);
       }
-        
+
     });
   }
   @override

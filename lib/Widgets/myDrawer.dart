@@ -1,9 +1,7 @@
+import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Config/config.dart';
-import 'package:e_shop/Address/addAddress.dart';
 import 'package:e_shop/Store/Search.dart';
-import 'package:e_shop/Store/cart.dart';
-import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -71,19 +69,10 @@ class MyDrawer extends StatelessWidget {
                 ),
                 Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
                 ListTile(
-                  leading: Icon(Icons.reorder,color: Colors.white,),
-                  title: Text("My Orders",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.upload_sharp,color: Colors.white,),
+                  title: Text("Sell Something",style: TextStyle(color: Colors.white),),
                   onTap: (){
-                    Route route = MaterialPageRoute(builder: (c) => MyOrders());
-                    Navigator.pushReplacement(context, route);
-                  },
-                ),
-                Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
-                ListTile(
-                  leading: Icon(Icons.shopping_cart,color: Colors.white,),
-                  title: Text("My Cart",style: TextStyle(color: Colors.white),),
-                  onTap: (){
-                    Route route = MaterialPageRoute(builder: (c) => CartPage());
+                    Route route = MaterialPageRoute(builder: (c) => UploadPage());
                     Navigator.pushReplacement(context, route);
                   },
                 ),
@@ -93,15 +82,6 @@ class MyDrawer extends StatelessWidget {
                   title: Text("Search",style: TextStyle(color: Colors.white),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) => SearchProduct());
-                    Navigator.pushReplacement(context, route);
-                  },
-                ),
-                Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
-                ListTile(
-                  leading: Icon(Icons.add_location,color: Colors.white,),
-                  title: Text("Add New Address",style: TextStyle(color: Colors.white),),
-                  onTap: (){
-                    Route route = MaterialPageRoute(builder: (c) => AddAddress());
                     Navigator.pushReplacement(context, route);
                   },
                 ),

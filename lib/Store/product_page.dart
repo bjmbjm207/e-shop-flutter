@@ -1,9 +1,9 @@
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
+import 'package:e_shop/mapsdemo.dart';
 import 'package:flutter/material.dart';
-import 'package:e_shop/Store/storehome.dart';
-import 'package:e_shop/route.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -13,17 +13,14 @@ class ProductPage extends StatefulWidget {
   @override
   _ProductPageState createState() => _ProductPageState();
 }
-
-
-
+String _url = 'tel:' + '0973331232';
 class _ProductPageState extends State<ProductPage> {
-  int quantityOfItems = 0;
   @override
   Widget build(BuildContext context)
   {
     Size screenSize= MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
+    return MaterialApp(
+      home: Scaffold(
         appBar: MyAppBar(),
         drawer: MyDrawer(),
         body: ListView(
@@ -70,13 +67,13 @@ class _ProductPageState extends State<ProductPage> {
                             child: Row(
                               children: [
                                 Icon(Icons.location_pin),
-                                Text("See on map")
+                                Text("Search on map")
                               ],
                             ),
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RoutePage()),
+                                MaterialPageRoute(builder: (context) => MapsDemo()),
                               );
                             },
                             color: Colors.white,
@@ -100,7 +97,9 @@ class _ProductPageState extends State<ProductPage> {
                     padding: EdgeInsets.only(top: 8.0),
                     child: Center(
                       child: InkWell(
-                        onTap: () => checkItemInCart(widget.itemModel.shortInfo, context),
+                        onTap: () => {
+                         _callNumber()
+                        },
                         child: Container(
                           decoration: new BoxDecoration(
                               gradient: new LinearGradient(
@@ -114,7 +113,7 @@ class _ProductPageState extends State<ProductPage> {
                           width: MediaQuery.of(context).size.width - 40.0,
                           height: 50.0,
                           child: Center(
-                            child: Text("Add to Cart", style: TextStyle(color: Colors.white),),
+                            child: Text("Call to Seller", style: TextStyle(color: Colors.white),),
                           ),
                         ),
                       ),
@@ -129,7 +128,12 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
+  void _callNumber() async => await canLaunch(_url)
+      ? await launch(_url) : throw 'Could not launch $_url';
 }
+
+
+
 
 const boldTextStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
 const largeTextStyle = TextStyle(fontWeight: FontWeight.normal, fontSize: 20);

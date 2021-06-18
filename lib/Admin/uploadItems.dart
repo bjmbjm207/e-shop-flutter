@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Authentication/authenication.dart';
+import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/main.dart';
+import 'adminShiftOrders.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:image/image.dart' as ImD;
+import 'package:image/image.dart';
 
 
 class UploadPage extends StatefulWidget
@@ -57,9 +58,9 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
         ),
         actions: [
           FlatButton(
-            child: Text("Logout",style: TextStyle(color: Colors.pink,fontSize: 16.0,fontWeight: FontWeight.bold),),
+            child: Text("Back",style: TextStyle(color: Colors.pink,fontSize: 16.0,fontWeight: FontWeight.bold),),
             onPressed: (){
-              Route route = MaterialPageRoute(builder: (c)=>SplashScreen());
+              Route route = MaterialPageRoute(builder: (c)=> StoreHome());
               Navigator.pushReplacement(context, route);
             },
           )
@@ -309,7 +310,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
   Future<String> uploadItemImage(mFileImage) async{
     final firebase_storage.Reference storageReference = firebase_storage.FirebaseStorage.instance.ref().child("items");
     firebase_storage.UploadTask uploadTask = storageReference.child("product_$productId.jpg").putFile(mFileImage);
-    firebase_storage.TaskSnapshot taskSnapshot = await uploadTask.snapshot;
+    firebase_storage.TaskSnapshot taskSnapshot = await uploadTask;
     String downloadUrl = await taskSnapshot.ref.getDownloadURL();
     return downloadUrl;
   }

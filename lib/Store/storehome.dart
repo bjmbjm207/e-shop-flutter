@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Store/cart.dart';
+import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,41 +50,13 @@ class _StoreHomeState extends State<StoreHome> {
             Stack(
               children: [
                 IconButton(
-                    icon: Icon(Icons.shopping_cart,color: Colors.pink,),
+                    icon: Icon(Icons.upload_sharp,color: Colors.pink,),
                     onPressed: (){
-                      Route route = MaterialPageRoute(builder: (c) => CartPage());
+                      Route route = MaterialPageRoute(builder: (c) => UploadPage());
                       Navigator.pushReplacement(context, route);
                     }
                 ),
-                Positioned(
-                  child: Stack(
-                    children: [
-                      Icon(
-                        Icons.brightness_1,
-                        size: 20.0,
-                        color: Colors.green,
-                      ),
-                      Positioned(
-                        top: 3.0,
-                        bottom: 4.0,
-                        left: 6.0,
-                        child: Consumer<CartItemCounter>(
-                          builder: (context,counter, _){
-                            return Text (
-                              counter.count.toString(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            );
-                          },
-                        ),
-                      )
 
-                    ],
-                  ),
-                )
               ],
             )
           ],
@@ -249,21 +221,6 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                     Flexible(
                         child: Container(),
                     ),
-
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: removeCartFunction == null
-                      ? IconButton(
-                        icon: Icon(Icons.add_shopping_cart, color: Colors.pinkAccent,),
-                        onPressed: ()
-                        {
-                          checkItemInCart(model.shortInfo, context);
-                        },
-                      )
-                          : IconButton(
-                        icon: Icon(Icons.delete, color: Colors.pinkAccent,),
-                      ),
-                      ),
                   ],
                 )
             )
